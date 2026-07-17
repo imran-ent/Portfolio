@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-dark text-light font-sans overflow-x-hidden;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full hover:bg-primary/50;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-light;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6 transition-all duration-500 hover:border-primary/30 hover:shadow-primary/5 hover:shadow-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute -inset-[1px] rounded-[inherit] bg-gradient-to-r from-primary via-accent to-secondary -z-10 opacity-50;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold text-white overflow-hidden transition-all duration-500;
+    background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-primary span {
+    @apply relative z-10;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold border-2 border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-16 text-center;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-400 text-center max-w-2xl mx-auto mb-12;
+  }
+
+  .animate-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #3B82F6;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #3B82F6 }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.light body,
+body.light {
+  @apply bg-gray-50 text-gray-900;
+}
+
+.light .glass,
+.light body .glass {
+  @apply bg-white/80 border-gray-200;
+}
+
+.light .glass-card {
+  @apply bg-white/80 border-gray-200 shadow-lg;
+}
+
+.light ::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 hover:bg-primary/40;
+}
